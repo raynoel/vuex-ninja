@@ -15,12 +15,11 @@
 
 <script>
 export default {
-  props: ['products'],
-  data() {
-    return {
- 
+  computed: {                                       // Computed properties obtient les données du store
+    products() {
+      return this.$store.state.products
     }
-  }
+  },
 };
 </script>
 

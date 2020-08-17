@@ -15,13 +15,11 @@
 
 <script>
 export default {
-  props: ['products'],                      // Props contient la liste des variables qu'on reçoit du parent
-  data() {
-    return {
- 
+  computed: {                                       // Computed properties obtient les données du store
+    products() {
+      return this.$store.state.products
     }
   },
-
 };
 </script>
 
