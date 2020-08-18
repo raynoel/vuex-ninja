@@ -23,13 +23,22 @@ export default new Vuex.Store({
       return saleProducts;
     }
   },
+  // Les mutations sont des fonctions qui modifient les variables du store
   mutations: {
-    reducePrice: state => {
-      state.products.forEach(product => {
-        product.price -= 1;
-      })
+    reducePrice: (state, amount) => {
+        state.products.forEach(product => {
+          product.price -= amount;
+        })
     }
   },
-  actions: {},
+  // Les actions permettent de débugger plus facilement en affichant dans la console Vue de Chrome les fonctions async lorsqu'elles exécutée.
+  // permet de voir l'effet des mulations en même temps que l'évènement apparait dans la console Vue
+  actions: {
+    reducePriceAction: (context, amount) => {
+      setTimeout(() => {                                      // setTimeout() simule le délais causé lors de l'accès à une ressource distante
+        context.commit('reducePrice', amount)
+      }, 3000)
+    }
+  },
   modules: {}
 });

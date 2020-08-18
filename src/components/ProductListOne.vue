@@ -2,12 +2,12 @@
   <div id="product-list-one">
     <h2>Product List One</h2>
     <ul>
-      <li v-for="product in saleProducts" :key="product.id" >
+      <li v-for="product in products" :key="product.id" >
         <span class="name">{{ product.name }}</span>
         <span class="price">${{ product.price }}</span>
       </li>
     </ul>
-    <button @click="reducePrice" >Reduce Price</button>
+    <button @click="reducePrice(4)" >Reduce Price</button>
   </div>
 </template>
 
@@ -16,20 +16,21 @@
 
 <script>
 export default {
-  computed: {                                       // Computed properties obtient les données du store
+  computed: {                                             // Computed properties obtient les données du store
     products() {
       return this.$store.state.products;
     },
-    saleProducts(){                                 // Modifie l'affichage sans modifier le store
+    saleProducts(){                                       // Modifie l'affichage sans modifier le store
       return this.$store.getters.saleProducts
     }
   },
   methods: {                                     
-    reducePrice() {        
-    // this.$store.state.products.forEach( product => { 
-    //   product.price -= 1;
-    // })
-      this.$store.commit('reducePrice')            // Enregistrer la fct dans le store permet de débugger avec le plugin Vue de Chrome
+    reducePrice(amount) {        
+   // this.$store.state.products.forEach( product => {    // Si on défini la fonction localement
+   //   product.price -= 1;                               
+   // })
+   // this.$store.commit('reducePrice')                   // Utiliser si on utilise les mutations, mais pas les actions
+      this.$store.dispatch('reducePriceAction', amount)   // Utiliser si on utilise les actions
     }
   }
 };
