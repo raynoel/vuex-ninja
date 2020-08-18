@@ -2,7 +2,7 @@
   <div id="product-list-two">
     <h2>Product List Two</h2>
     <ul>
-      <li v-for="product in products" :key="product.id" >
+      <li v-for="product in saleProducts" :key="product.id" >
         <span class="name">{{ product.name }}</span>
         <span class="price">${{ product.price }}</span>
       </li>
@@ -17,7 +17,10 @@
 export default {
   computed: {                                       // Computed properties obtient les données du store
     products() {
-      return this.$store.state.products
+      return this.$store.state.products;
+    },
+    saleProducts(){                                 // Modifie l'affichage sans modifier le store
+      return this.$store.getters.saleProducts
     }
   },
 };
