@@ -15,23 +15,22 @@
 
 
 <script>
+import {mapActions} from 'vuex';
+import {mapGetters} from 'vuex';
+
 export default {
   computed: {                                             // Computed properties obtient les données du store
     products() {
       return this.$store.state.products;
     },
-    saleProducts(){                                       // Modifie l'affichage sans modifier le store
-      return this.$store.getters.saleProducts
-    }
+    ...mapGetters([
+      'saleProducts',                                     // Liste des getters
+    ])
   },
   methods: {                                     
-    reducePrice(amount) {        
-   // this.$store.state.products.forEach( product => {    // Si on défini la fonction localement
-   //   product.price -= 1;                               
-   // })
-   // this.$store.commit('reducePrice')                   // Utiliser si on utilise les mutations, mais pas les actions
-      this.$store.dispatch('reducePriceAction', amount)   // Utiliser si on utilise les actions
-    }
+  ...mapActions([
+    'reducePrice',                                        // Liste des actions
+  ])
   }
 };
 </script>

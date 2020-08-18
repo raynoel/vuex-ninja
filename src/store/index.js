@@ -34,7 +34,7 @@ export default new Vuex.Store({
   // Les actions permettent de débugger plus facilement en affichant dans la console Vue de Chrome les fonctions async lorsqu'elles exécutée.
   // permet de voir l'effet des mulations en même temps que l'évènement apparait dans la console Vue
   actions: {
-    reducePriceAction: (context, amount) => {
+    reducePrice: (context, amount) => {
       setTimeout(() => {                                      // setTimeout() simule le délais causé lors de l'accès à une ressource distante
         context.commit('reducePrice', amount)
       }, 3000)
